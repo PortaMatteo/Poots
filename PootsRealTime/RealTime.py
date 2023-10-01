@@ -1,7 +1,12 @@
 import os
 from ultralytics import YOLO
 import cv2
-import math 
+import math
+import RPi.GPIO as GPIO
+import time 
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(14,GPIO.OUT)  #Il numero si riverisce al nome del pin
 
 model_path = os.path.join('.','runs', 'detect', 'train', 'weights', 'best.pt')
 # model
@@ -34,6 +39,12 @@ while True:
 
             # confidence
             confidence = math.ceil((box.conf[0]*100))/100
+          
+            if confidence > 0.5:
+                GPIO.output(14,GPIO.HIGH)
+                time.sleep(5)
+                GPIO.output(14,GPIO.LOW)
+                print('acceso')
             print("Confidence --->",confidence)
 
             # class name
