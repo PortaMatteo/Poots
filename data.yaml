@@ -1,0 +1,14 @@
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 1
+names: ['poop']
+
+roboflow:
+  workspace: usa-jhtpj
+  project: dog-excrements-golzu
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/usa-jhtpj/dog-excrements-golzu/dataset/3
+
