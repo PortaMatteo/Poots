@@ -4,7 +4,6 @@ from ultralytics import YOLO
 import cv2
 import math
 #import RPi.GPIO as GPIO
-import time 
 from playsound import playsound
 
 # Socket Create
@@ -16,7 +15,7 @@ port = 9997
 
 #GPIO.setmode(GPIO.BCM)
 #GPIO.setup(14,GPIO.OUT)  #Il numero si riverisce al nome del pin
-model_path = os.path.join('.','runs', 'detect', 'train4', 'weights', 'best.pt')
+model_path = os.path.join('.','runs2', 'detect', 'train', 'weights', 'best.pt')
 # model
 model = YOLO(model_path)
 
@@ -39,7 +38,9 @@ print("LISTENING AT:",host_ip,port)
 conn, addr = server_socket.accept()
 
 data = b""
+print(data)
 payload_size = struct.calcsize("Q")
+print(payload_size)
 
 def recogntion(img):
     results = model(img, stream=True)
@@ -47,18 +48,20 @@ def recogntion(img):
     # coordinates
     for r in results:
         boxes = r.boxes
-        print(boxes)
+        
         for box in boxes:
+
+
 
             # bounding box
             x1, y1, x2, y2 = box.xyxy[0]
             x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2) # convert to int values
-            # put box in cam
+             # put box in cam
             cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 255), 3)
-
 
             confidence = math.ceil((box.conf[0]*100))/100
             #print("Confidence --->",confidence)
+
 
 
             # class name
@@ -75,8 +78,8 @@ def recogntion(img):
             #cv2.putText(img, classNames[cls], org, font, fontScale, color, thickness)
            
         
-            return confidence >= 0.40
-    return False
+            return confidence >= 0.50
+    
 
 while True:
     while len(data) < payload_size:

@@ -1,6 +1,6 @@
 import socket,cv2, pickle,struct, imutils
 import time
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from threading import Thread
 
 # create socket
@@ -13,15 +13,15 @@ payload_size = struct.calcsize("Q")
 vibro  = False
 tstart = 0
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(14,GPIO.OUT) 
+#GPIO.setmode(GPIO.BCM)
+#GPIO.setup(14,GPIO.OUT) 
 
 
 def trigger():
     print("acceso")
-    GPIO.output(14,GPIO.HIGH)
+    #GPIO.output(14,GPIO.HIGH)
     time.sleep(5)
-    GPIO.output(14,GPIO.LOW)
+    #GPIO.output(14,GPIO.LOW)
     print("spento")
 
 
@@ -44,12 +44,12 @@ while True:
                 if vibro == False:
                     vibro = True
                     tstart = time.time()
-                    GPIO.output(14,GPIO.HIGH)
+                    #GPIO.output(14,GPIO.HIGH)
                     #playsound("success-fanfare-trumpets-6185.mp3")
                     print("ACCESOOOOACCESOOOOOOACCESOOOOOOOO")
             
             if time.time() - tstart >= 5 and vibro == True:
-                GPIO.output(14,GPIO.LOW)
+                #GPIO.output(14,GPIO.LOW)
                 #playsound("wah-wah-sad-trombone-6347.mp3")
                 vibro = False
                 print("SPENTOSPENTOSPENTOSPENTOSPENTO")
