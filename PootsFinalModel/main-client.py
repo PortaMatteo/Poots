@@ -40,7 +40,7 @@ while True:
             encodedMessage = client_socket.recv(1024)
             message = encodedMessage.decode('utf-8').lower() == "true"
             print(message)
-            '''if message:
+            if message:
                 if vibro == False:
                     vibro = True
                     tstart = time.time()
@@ -48,16 +48,17 @@ while True:
                     #playsound("success-fanfare-trumpets-6185.mp3")
                     print("ACCESOOOOACCESOOOOOOACCESOOOOOOOO")
             
-                if time.time() - tstart >= 5 and vibro == True:
-                    GPIO.output(14,GPIO.LOW)
-                    #playsound("wah-wah-sad-trombone-6347.mp3")
-                    vibro = False
-                    print("SPENTOSPENTOSPENTOSPENTOSPENTO")'''
+            if time.time() - tstart >= 5 and vibro == True:
+                GPIO.output(14,GPIO.LOW)
+                #playsound("wah-wah-sad-trombone-6347.mp3")
+                vibro = False
+                print("SPENTOSPENTOSPENTOSPENTOSPENTO")
             
+            '''
             if message:
                 if time.time() - tstart >= 5: 
                     tstart = time.time()
-                    Thread(target=trigger).start()
+                    Thread(target=trigger).start()'''
 
 
             key = cv2.waitKey(1) & 0xFF
