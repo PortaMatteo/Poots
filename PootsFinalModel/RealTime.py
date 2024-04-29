@@ -63,7 +63,7 @@ while True:
                     vibro = True
                     tstart = time.time()
                     #GPIO.output(14,GPIO.HIGH)
-                    playsound("success-fanfare-trumpets-6185.mp3")
+                    #playsound("success-fanfare-trumpets-6185.mp3")
                     print("ACCESOOOOACCESOOOOOOACCESOOOOOOOO")
             
     if time.time() - tstart >= 5 and vibro == True:
