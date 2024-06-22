@@ -3,7 +3,6 @@ import time
 #import RPi.GPIO as GPIO
 from threading import Thread
 
-# create socket
 client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 host_ip = '192.168.1.13' # paste your server ip address here
 port = 9997
